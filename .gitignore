@@ -36,3 +36,7 @@ sandbox\.py
 test_bot\.sh
 
 visualizer\.jar
+
+\.DS_Store
+
+*.pyc
