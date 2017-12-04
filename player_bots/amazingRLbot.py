@@ -7,12 +7,27 @@ from ants import *
 class amzingRLbot:
     def __init__(self):
         # define class level variables, will be remembered between turns
+
+        botFile = open('amazingRLbotWeights.txt', 'r+')
+        self.weights = [x.strip() for x in botFile]
+
+        # RL parameters
+        self.epsilon = 0.3  # (exploration prob)
+        self.alpha = 0.5    # (learning rate)
+        self.discount = 0.9 # (discount rate)
+
+        # write weights to file to save between iterations?
+        # find out way to run a lot of iterations fast
+        # find good features
+
         pass
 
     # do_setup is run once at the start of the game
     # after the bot has received the game settings
     # the ants class is created and setup by the Ants.run method
     def do_setup(self, ants):
+
+
         self.hills = []
 
         # initialize data structures after learning the game settings
@@ -25,7 +40,7 @@ class amzingRLbot:
     # the ants class has the game state and is updated by the Ants.run method
     # it also has several helper methods to use
     def do_turn(self, ants): # track all moves, prevent collisions
-
+        # print(self.weights)
         orders = {}
         def do_move_direction(loc, direction):
             # the destination method will wrap around the map properly
@@ -101,6 +116,44 @@ class amzingRLbot:
                 for direction in ('s', 'e', 'w', 'n'):
                     if do_move_direction(hill_loc, direction):
                         break
+
+
+    """Reinforcement Learning Helper Functions"""
+    def computeValueFromQValues(self, state):
+        """
+          Returns max_action Q(state,action)
+          where the max is over legal actions.
+        """
+
+    def computeActionFromQValues(self, state):
+        """
+          Compute the best action to take in a state.
+        """
+
+    def getAction(self, state):
+        """
+          Compute the action to take in the current state.  With
+          probability epsilon, we should take a random action and
+          take the best policy action otherwise.
+        """
+
+    def getQValue(self, state, action):
+        """
+          Should return Q(state,action) = w * featureVector
+          where * is the dotProduct operator
+        """
+
+    def update(self, state, action, nextState, reward):
+        """
+           Should update your weights based on transition
+        """
+
+    def updateFile(self):
+        """
+           Update the weights file with most recent update
+        """
+
+
 
 if __name__ == '__main__':
     # psyco will speed up python a little, but is not needed
